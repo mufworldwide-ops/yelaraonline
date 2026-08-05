@@ -1,0 +1,19 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "images/uploads" # Where uploaded product images will be saved
+public_folder: "/images/uploads"
+
+collections:
+  - name: "products"
+    label: "Products"
+    folder: "content/products"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Product Code", name: "code", widget: "string", hint: "e.g., YEL-007" }
+      - { label: "Category", name: "category", widget: "select", options: ["dresses", "tops", "sets", "outerwear"] }
+      - { label: "Material", name: "material", widget: "string", hint: "e.g., Silk Linen Blend" }
+      - { label: "Product Image", name: "image", widget: "image" }
+      - { label: "WhatsApp Order Message", name: "whatsapp_text", widget: "string", default: "Hi Yelara, I'd like to order" }
