@@ -5,13 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Yelara — Slow Fashion Atelier</title>
   
-  <!-- Netlify Identity Widget for CMS Login -->
+  <!-- Netlify Identity Widget -->
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 
-  <!-- Fonts -->
+  <!-- Fonts & Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
   <style>
     :root {
@@ -20,6 +21,7 @@
       --text-main: #f3f3f3;
       --text-muted: #a0a0a0;
       --accent: #d4af37;
+      --whatsapp-green: #25D366;
       --border-color: #262626;
       --font-serif: 'Cormorant Garamond', serif;
       --font-sans: 'Inter', sans-serif;
@@ -28,101 +30,194 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { background-color: var(--bg-color); color: var(--text-main); font-family: var(--font-sans); line-height: 1.6; }
     
-    header { padding: 2rem; text-align: center; border-bottom: 1px solid var(--border-color); }
-    header h1 { font-family: var(--font-serif); font-size: 2.5rem; letter-spacing: 2px; color: var(--accent); }
+    /* Header & Luxury Styling */
+    header { padding: 3.5rem 1.5rem 2.5rem; text-align: center; border-bottom: 1px solid var(--border-color); background: #121212; }
+    header h1 { font-family: var(--font-serif); font-size: 3.2rem; letter-spacing: 6px; color: var(--accent); font-weight: 300; }
+    header p { color: var(--text-muted); font-size: 0.85rem; letter-spacing: 3px; margin-top: 0.6rem; text-transform: uppercase; }
 
-    .container { max-width: 1200px; margin: 0 auto; padding: 3rem 1.5rem; }
-    .section-title { font-family: var(--font-serif); font-size: 2rem; margin-bottom: 2rem; text-align: center; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 3.5rem 1.5rem; }
+    .section-title { font-family: var(--font-serif); font-size: 2.2rem; margin-bottom: 3rem; text-align: center; font-weight: 300; letter-spacing: 2px; color: var(--text-main); }
 
     /* Product Grid */
     .product-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 2rem;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2.5rem;
     }
 
     .product-card {
       background: var(--card-bg);
       border: 1px solid var(--border-color);
-      border-radius: 8px;
+      border-radius: 4px;
       overflow: hidden;
       display: flex;
       flex-direction: column;
-      transition: transform 0.2s ease, border-color 0.2s ease;
+      transition: transform 0.3s ease, border-color 0.3s ease;
     }
 
     .product-card:hover {
-      transform: translateY(-4px);
+      transform: translateY(-6px);
       border-color: var(--accent);
+    }
+
+    .image-container {
+      width: 100%;
+      height: 400px;
+      overflow: hidden;
+      background-color: #1a1a1a;
+      position: relative;
     }
 
     .product-card img {
       width: 100%;
-      height: 320px;
+      height: 100%;
       object-fit: cover;
-      background-color: #222;
+      transition: transform 0.5s ease;
     }
 
-    .product-info { padding: 1.25rem; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
-    .product-title { font-family: var(--font-serif); font-size: 1.4rem; margin-bottom: 0.5rem; }
-    .product-price { color: var(--accent); font-weight: 500; font-size: 1.1rem; margin-bottom: 0.75rem; }
-    .product-desc { color: var(--text-muted); font-size: 0.9rem; line-height: 1.4; }
+    .product-card:hover img {
+      transform: scale(1.05);
+    }
+
+    .product-info {
+      padding: 1.5rem;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .product-title {
+      font-family: var(--font-serif);
+      font-size: 1.6rem;
+      font-weight: 400;
+      margin-bottom: 0.4rem;
+      color: var(--text-main);
+    }
+
+    .product-price {
+      color: var(--accent);
+      font-weight: 500;
+      font-size: 1.2rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .product-desc {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      line-height: 1.5;
+      margin-bottom: 1.5rem;
+      white-space: pre-line;
+    }
+
+    /* WhatsApp Button */
+    .btn-whatsapp {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      background-color: transparent;
+      color: var(--whatsapp-green);
+      border: 1px solid var(--whatsapp-green);
+      padding: 0.8rem 1rem;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.88rem;
+      letter-spacing: 1px;
+      transition: all 0.25s ease;
+      text-transform: uppercase;
+    }
+
+    .btn-whatsapp:hover {
+      background-color: var(--whatsapp-green);
+      color: #000;
+    }
+
+    footer {
+      text-align: center;
+      padding: 3rem 1.5rem;
+      border-top: 1px solid var(--border-color);
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      margin-top: 4rem;
+      letter-spacing: 1px;
+    }
   </style>
 </head>
 <body>
 
   <header>
     <h1>YELARA</h1>
-    <p style="color: var(--text-muted); font-size: 0.9rem; letter-spacing: 1px;">SLOW FASHION ATELIER</p>
+    <p>Slow Fashion Atelier</p>
   </header>
 
   <main class="container">
-    <h2 class="section-title">Our Collection</h2>
+    <h2 class="section-title">Exclusive Collection</h2>
     <div id="product-grid" class="product-grid">
       <p style="text-align: center; grid-column: 1 / -1; color: var(--text-muted);">Loading products...</p>
     </div>
   </main>
 
-  <!-- Script to Dynamically Fetch Products from GitHub -->
+  <footer>
+    <p>&copy; YELARA Slow Fashion Atelier. All rights reserved.</p>
+  </footer>
+
+  <!-- Dynamic GitHub Fetching with WhatsApp Button -->
   <script>
+    const WHATSAPP_NUMBER = "919778213113"; 
+
     async function fetchProducts() {
       const grid = document.getElementById('product-grid');
       try {
-        // Fetch product markdown files from GitHub repository
         const response = await fetch('https://api.github.com/repos/mufworldwide-ops/yelaraonline/contents/products');
         if (!response.ok) throw new Error('No products found');
         
         const files = await response.json();
-        grid.innerHTML = ''; // Clear loading text
+        grid.innerHTML = ''; 
 
         for (const file of files) {
           if (file.name.endsWith('.md')) {
             const res = await fetch(file.download_url);
             const text = await res.text();
 
-            // Extract Frontmatter data (Title, Price, Image, Body)
+            // Extract values
             const titleMatch = text.match(/title:\s*["']?(.*?)["']?\r?\n/);
             const priceMatch = text.match(/price:\s*["']?(.*?)["']?\r?\n/);
             const imageMatch = text.match(/image:\s*["']?(.*?)["']?\r?\n/);
             
-            // Clean up description content below YAML header
-            const bodyContent = text.replace(/---[\s\S]*?---/, '').trim();
+            // Clean content description
+            let bodyContent = text.replace(/---[\s\S]*?---/, '').trim();
 
             const title = titleMatch ? titleMatch[1] : 'Untitled Product';
             const price = priceMatch ? priceMatch[1] : '';
             let image = imageMatch ? imageMatch[1] : '';
 
-            // Render Product Card HTML
+            // Clean up image paths
+            if (image.startsWith('/')) {
+              image = image.substring(1);
+            }
+
+            // WhatsApp Message Text
+            const waMsg = encodeURIComponent(`Hello Yelara! I am interested in ordering: ${title} (${price})`);
+            const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${waMsg}`;
+
+            // Create Product Card
             const card = document.createElement('div');
             card.className = 'product-card';
             card.innerHTML = `
-              ${image ? `<img src="${image}" alt="${title}" onerror="this.style.display='none'">` : ''}
+              <div class="image-container">
+                ${image ? `<img src="${image}" alt="${title}" onerror="this.src='https://via.placeholder.com/400x500?text=No+Image'">` : '<div style="height:100%;display:flex;align-items:center;justify-content:center;color:#555;">No Image</div>'}
+              </div>
               <div class="product-info">
                 <div>
                   <h3 class="product-title">${title}</h3>
                   ${price ? `<p class="product-price">${price}</p>` : ''}
                   <p class="product-desc">${bodyContent}</p>
                 </div>
+                <a href="${waUrl}" target="_blank" class="btn-whatsapp">
+                  <i class="fab fa-whatsapp"></i> Order via WhatsApp
+                </a>
               </div>
             `;
             grid.appendChild(card);
@@ -130,14 +225,14 @@
         }
       } catch (err) {
         console.error(err);
-        grid.innerHTML = '<p style="text-align: center; grid-column: 1 / -1; color: var(--text-muted);">No products found yet. Add products via Decap CMS!</p>';
+        grid.innerHTML = '<p style="text-align: center; grid-column: 1 / -1; color: var(--text-muted);">No products found yet.</p>';
       }
     }
 
     fetchProducts();
   </script>
 
-  <!-- Netlify Identity Redirect Logic -->
+  <!-- Netlify Identity Redirect -->
   <script>
     if (window.netlifyIdentity) {
       window.netlifyIdentity.on("init", user => {
