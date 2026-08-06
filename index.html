@@ -5,13 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Yelara — Slow Fashion Atelier</title>
   
+  <!-- Netlify Identity Widget for CMS Login -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
   <style>
-    /* CSS Styles */
     :root {
       --bg-color: #0f0f0f;
       --card-bg: #161616;
@@ -23,179 +25,16 @@
       --font-sans: 'Inter', sans-serif;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background-color: var(--bg-color); color: var(--text-main); font-family: var(--font-sans); line-height: 1.6; }
+    
+    header { padding: 2rem; text-align: center; border-bottom: 1px solid var(--border-color); }
+    header h1 { font-family: var(--font-serif); font-size: 2.5rem; letter-spacing: 2px; color: var(--accent); }
 
-    body {
-      background-color: var(--bg-color);
-      color: var(--text-main);
-      font-family: var(--font-sans);
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-    }
+    .container { max-width: 1200px; margin: 0 auto; padding: 3rem 1.5rem; }
+    .section-title { font-family: var(--font-serif); font-size: 2rem; margin-bottom: 2rem; text-align: center; }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    /* Navigation */
-    nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1.5rem 3rem;
-      background: rgba(15, 15, 15, 0.9);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--border-color);
-      z-index: 1000;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 2rem;
-      list-style: none;
-      font-size: 0.8rem;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-    }
-
-    .nav-links a:hover {
-      color: var(--accent);
-    }
-
-    .brand-logo {
-      font-family: var(--font-serif);
-      font-size: 1.8rem;
-      letter-spacing: 4px;
-      font-weight: 400;
-    }
-
-    /* Hero Section */
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 8rem 2rem 4rem;
-    }
-
-    .hero-subtitle {
-      font-size: 0.85rem;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      margin-bottom: 1rem;
-    }
-
-    .hero-title {
-      font-family: var(--font-serif);
-      font-size: clamp(2.5rem, 6vw, 5rem);
-      font-weight: 300;
-      line-height: 1.1;
-      max-width: 900px;
-      margin-bottom: 1.5rem;
-    }
-
-    .hero-title i {
-      font-style: italic;
-      color: #e2c092;
-    }
-
-    .hero-description {
-      max-width: 600px;
-      color: var(--text-muted);
-      font-size: 1rem;
-      margin-bottom: 2.5rem;
-    }
-
-    .cta-buttons {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    .btn {
-      padding: 0.9rem 2rem;
-      font-size: 0.75rem;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      border: 1px solid var(--text-main);
-      transition: all 0.3s ease;
-      cursor: pointer;
-    }
-
-    .btn-primary {
-      background-color: var(--text-main);
-      color: var(--bg-color);
-    }
-
-    .btn-primary:hover {
-      background-color: transparent;
-      color: var(--text-main);
-    }
-
-    .btn-secondary:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-    }
-
-    /* Section Styling */
-    section {
-      padding: 6rem 3rem;
-      max-width: 1400px;
-      margin: 0 auto;
-    }
-
-    .section-header {
-      margin-bottom: 3rem;
-      text-align: center;
-    }
-
-    .section-title {
-      font-family: var(--font-serif);
-      font-size: 2.5rem;
-      font-weight: 300;
-      margin-bottom: 0.5rem;
-    }
-
-    /* Collection & Filters */
-    .filter-bar {
-      display: flex;
-      justify-content: center;
-      gap: 1.5rem;
-      margin-bottom: 3rem;
-      flex-wrap: wrap;
-    }
-
-    .filter-btn {
-      background: none;
-      border: none;
-      color: var(--text-muted);
-      font-size: 0.8rem;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      cursor: pointer;
-      padding-bottom: 4px;
-      border-bottom: 2px solid transparent;
-      transition: all 0.3s ease;
-    }
-
-    .filter-btn.active, .filter-btn:hover {
-      color: var(--text-main);
-      border-color: var(--text-main);
-    }
-
+    /* Product Grid */
     .product-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -203,306 +42,112 @@
     }
 
     .product-card {
-      background-color: var(--card-bg);
+      background: var(--card-bg);
       border: 1px solid var(--border-color);
-      padding: 1.5rem;
+      border-radius: 8px;
+      overflow: hidden;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      transition: transform 0.3s ease, border-color 0.3s ease;
+      transition: transform 0.2s ease, border-color 0.2s ease;
     }
 
     .product-card:hover {
-      transform: translateY(-5px);
-      border-color: #444;
+      transform: translateY(-4px);
+      border-color: var(--accent);
     }
 
-    .product-img-placeholder {
-      aspect-ratio: 3/4;
-      background-color: #222;
-      margin-bottom: 1.2rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #555;
-      font-size: 0.8rem;
-      letter-spacing: 1px;
-    }
-
-    .product-code {
-      font-size: 0.85rem;
-      letter-spacing: 1.5px;
-      margin-bottom: 0.2rem;
-    }
-
-    .product-material {
-      font-size: 0.75rem;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-bottom: 1rem;
-    }
-
-    .product-actions {
-      display: flex;
-      gap: 0.5rem;
-    }
-
-    .btn-whatsapp {
+    .product-card img {
       width: 100%;
-      text-align: center;
-      padding: 0.6rem;
-      font-size: 0.7rem;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      border: 1px solid var(--border-color);
-      background: transparent;
-      color: var(--text-main);
-      transition: background 0.3s ease;
+      height: 320px;
+      object-fit: cover;
+      background-color: #222;
     }
 
-    .btn-whatsapp:hover {
-      background-color: #25d366;
-      color: #000;
-      border-color: #25d366;
-    }
-
-    /* Atelier Section */
-    .atelier-stats {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 2rem;
-      margin-top: 4rem;
-      text-align: center;
-    }
-
-    .stat-box {
-      border: 1px solid var(--border-color);
-      padding: 2.5rem 1.5rem;
-    }
-
-    .stat-number {
-      font-family: var(--font-serif);
-      font-size: 3rem;
-      color: #e2c092;
-      margin-bottom: 0.5rem;
-    }
-
-    .stat-label {
-      font-size: 0.75rem;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--text-muted);
-    }
-
-    /* Footer */
-    footer {
-      border-top: 1px solid var(--border-color);
-      padding: 4rem 3rem 2rem;
-      background-color: #080808;
-    }
-
-    .footer-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 3rem;
-      margin-bottom: 3rem;
-    }
-
-    .footer-col h4 {
-      font-size: 0.8rem;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      margin-bottom: 1.2rem;
-    }
-
-    .footer-col ul {
-      list-style: none;
-    }
-
-    .footer-col ul li {
-      margin-bottom: 0.6rem;
-      font-size: 0.9rem;
-      color: var(--text-muted);
-    }
-
-    .footer-bottom {
-      text-align: center;
-      font-size: 0.75rem;
-      color: var(--text-muted);
-      border-top: 1px solid var(--border-color);
-      padding-top: 2rem;
-      letter-spacing: 1px;
-    }
-
-    @media (max-width: 768px) {
-      nav { padding: 1rem 1.5rem; }
-      .nav-links { display: none; } /* Add burger menu if needed */
-      section { padding: 4rem 1.5rem; }
-    }
+    .product-info { padding: 1.25rem; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
+    .product-title { font-family: var(--font-serif); font-size: 1.4rem; margin-bottom: 0.5rem; }
+    .product-price { color: var(--accent); font-weight: 500; font-size: 1.1rem; margin-bottom: 0.75rem; }
+    .product-desc { color: var(--text-muted); font-size: 0.9rem; line-height: 1.4; }
   </style>
 </head>
 <body>
 
-  <!-- Navigation Header -->
-  <nav>
-    <ul class="nav-links">
-      <li><a href="#collection">Collection</a></li>
-      <li><a href="#atelier">Atelier</a></li>
-    </ul>
-    <div class="brand-logo">YELARA</div>
-    <ul class="nav-links">
-      <li><a href="#materiality">Materiality</a></li>
-      <li><a href="#connect">Connect</a></li>
-    </ul>
-  </nav>
-
-  <!-- Hero Section -->
-  <header class="hero">
-    <div class="hero-subtitle">Slow Fashion Atelier</div>
-    <h1 class="hero-title">Slow silhouettes for the <i>modern romantic</i></h1>
-    <p class="hero-description">An editorial collection of garments cut from natural fibres, draped for movement, and made to be lived in — slowly, beautifully.</p>
-    <div class="cta-buttons">
-      <a href="#collection" class="btn btn-primary">Discover the Collection</a>
-      <a href="https://wa.me/919778213113?text=Hello%20Yelara,%20I'd%20like%20to%20inquire%20about%20your%20collection." target="_blank" class="btn btn-secondary">Order on WhatsApp</a>
-    </div>
+  <header>
+    <h1>YELARA</h1>
+    <p style="color: var(--text-muted); font-size: 0.9rem; letter-spacing: 1px;">SLOW FASHION ATELIER</p>
   </header>
 
-  <!-- Collection Section -->
-  <section id="collection">
-    <div class="section-header">
-      <h2 class="section-title">Pieces composed with intention</h2>
-      <p style="color: var(--text-muted); font-size: 0.9rem;">Tap any piece to order directly through WhatsApp.</p>
+  <main class="container">
+    <h2 class="section-title">Our Collection</h2>
+    <div id="product-grid" class="product-grid">
+      <p style="text-align: center; grid-column: 1 / -1; color: var(--text-muted);">Loading products...</p>
     </div>
+  </main>
 
-    <!-- Category Filter Tabs -->
-    <div class="filter-bar">
-      <button class="filter-btn active" onclick="filterCategory('all')">All</button>
-      <button class="filter-btn" onclick="filterCategory('dresses')">Dresses</button>
-      <button class="filter-btn" onclick="filterCategory('tops')">Tops</button>
-      <button class="filter-btn" onclick="filterCategory('sets')">Sets</button>
-      <button class="filter-btn" onclick="filterCategory('outerwear')">Outerwear</button>
-    </div>
-
-    <!-- Product Grid -->
-    <div class="product-grid" id="productGrid">
-      <!-- Item 1 -->
-      <div class="product-card" data-category="dresses">
-        <div class="product-img-placeholder">[ YEL-007 IMAGE ]</div>
-        <div class="product-code">YEL-007</div>
-        <div class="product-material">Silk Linen Blend</div>
-        <div class="product-actions">
-          <a href="https://wa.me/919778213113?text=Hi%20Yelara,%20I'd%20like%20to%20order%20YEL-007" target="_blank" class="btn-whatsapp">Order via WhatsApp</a>
-        </div>
-      </div>
-
-      <!-- Item 2 -->
-      <div class="product-card" data-category="tops">
-        <div class="product-img-placeholder">[ YEL-022 IMAGE ]</div>
-        <div class="product-code">YEL-022</div>
-        <div class="product-material">Cotton Sateen</div>
-        <div class="product-actions">
-          <a href="https://wa.me/919778213113?text=Hi%20Yelara,%20I'd%20like%20to%20order%20YEL-022" target="_blank" class="btn-whatsapp">Order via WhatsApp</a>
-        </div>
-      </div>
-
-      <!-- Item 3 -->
-      <div class="product-card" data-category="sets">
-        <div class="product-img-placeholder">[ YEL-018 IMAGE ]</div>
-        <div class="product-code">YEL-018</div>
-        <div class="product-material">Pure Organic Linen</div>
-        <div class="product-actions">
-          <a href="https://wa.me/919778213113?text=Hi%20Yelara,%20I'd%20like%20to%20order%20YEL-018" target="_blank" class="btn-whatsapp">Order via WhatsApp</a>
-        </div>
-      </div>
-
-      <!-- Item 4 -->
-      <div class="product-card" data-category="outerwear">
-        <div class="product-img-placeholder">[ YEL-035 IMAGE ]</div>
-        <div class="product-code">YEL-035</div>
-        <div class="product-material">Handwoven Cotton</div>
-        <div class="product-actions">
-          <a href="https://wa.me/919778213113?text=Hi%20Yelara,%20I'd%20like%20to%20order%20YEL-035" target="_blank" class="btn-whatsapp">Order via WhatsApp</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Atelier Section -->
-  <section id="atelier">
-    <div class="section-header">
-      <h2 class="section-title">A quiet rebellion against the disposable</h2>
-      <p style="max-width: 700px; margin: 0 auto; color: var(--text-muted);">
-        Yelara began with a single belief — that clothing should be felt before it is seen. We work in small batches, sourcing natural fibres that breathe, drape, and soften with time.
-      </p>
-    </div>
-
-    <div class="atelier-stats">
-      <div class="stat-box">
-        <div class="stat-number">100%</div>
-        <div class="stat-label">Natural Fibres</div>
-      </div>
-      <div class="stat-box">
-        <div class="stat-number">&le; 30</div>
-        <div class="stat-label">Small Batch Pieces</div>
-      </div>
-      <div class="stat-box">
-        <div class="stat-number">Yes</div>
-        <div class="stat-label">Made to Order</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer id="connect">
-    <div class="footer-grid">
-      <div class="footer-col">
-        <div class="brand-logo" style="margin-bottom: 1rem;">YELARA</div>
-        <p style="color: var(--text-muted); font-size: 0.85rem;">An atelier of slow silhouettes. Each garment is composed with intention.</p>
-      </div>
-      <div class="footer-col">
-        <h4>Explore</h4>
-        <ul>
-          <li><a href="#collection">The Collection</a></li>
-          <li><a href="#atelier">The Atelier</a></li>
-          <li><a href="#materiality">Materiality</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Connect</h4>
-        <ul>
-          <li>Email: <a href="mailto:yelara.online@gmail.com">yelara.online@gmail.com</a></li>
-          <li>Instagram: <a href="https://instagram.com/yelara.online" target="_blank">@yelara.online</a></li>
-          <li>WhatsApp: +91 97782 13113</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="footer-bottom">
-      &copy; 2026 YELARA — ALL RIGHTS RESERVED. SLOW FASHION · MADE WITH INTENTION.
-    </div>
-  </footer>
-
-  <!-- JavaScript for Filtering -->
+  <!-- Script to Dynamically Fetch Products from GitHub -->
   <script>
-    function filterCategory(category) {
-      const cards = document.querySelectorAll('.product-card');
-      const buttons = document.querySelectorAll('.filter-btn');
+    async function fetchProducts() {
+      const grid = document.getElementById('product-grid');
+      try {
+        // Fetch product markdown files from GitHub repository
+        const response = await fetch('https://api.github.com/repos/mufworldwide-ops/yelaraonline/contents/products');
+        if (!response.ok) throw new Error('No products found');
+        
+        const files = await response.json();
+        grid.innerHTML = ''; // Clear loading text
 
-      // Update active button state
-      buttons.forEach(btn => btn.classList.remove('active'));
-      event.target.classList.add('active');
+        for (const file of files) {
+          if (file.name.endsWith('.md')) {
+            const res = await fetch(file.download_url);
+            const text = await res.text();
 
-      // Filter grid
-      cards.forEach(card => {
-        if (category === 'all' || card.dataset.category === category) {
-          card.style.display = 'flex';
-        } else {
-          card.style.display = 'none';
+            // Extract Frontmatter data (Title, Price, Image, Body)
+            const titleMatch = text.match(/title:\s*["']?(.*?)["']?\r?\n/);
+            const priceMatch = text.match(/price:\s*["']?(.*?)["']?\r?\n/);
+            const imageMatch = text.match(/image:\s*["']?(.*?)["']?\r?\n/);
+            
+            // Clean up description content below YAML header
+            const bodyContent = text.replace(/---[\s\S]*?---/, '').trim();
+
+            const title = titleMatch ? titleMatch[1] : 'Untitled Product';
+            const price = priceMatch ? priceMatch[1] : '';
+            let image = imageMatch ? imageMatch[1] : '';
+
+            // Render Product Card HTML
+            const card = document.createElement('div');
+            card.className = 'product-card';
+            card.innerHTML = `
+              ${image ? `<img src="${image}" alt="${title}" onerror="this.style.display='none'">` : ''}
+              <div class="product-info">
+                <div>
+                  <h3 class="product-title">${title}</h3>
+                  ${price ? `<p class="product-price">${price}</p>` : ''}
+                  <p class="product-desc">${bodyContent}</p>
+                </div>
+              </div>
+            `;
+            grid.appendChild(card);
+          }
+        }
+      } catch (err) {
+        console.error(err);
+        grid.innerHTML = '<p style="text-align: center; grid-column: 1 / -1; color: var(--text-muted);">No products found yet. Add products via Decap CMS!</p>';
+      }
+    }
+
+    fetchProducts();
+  </script>
+
+  <!-- Netlify Identity Redirect Logic -->
+  <script>
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", user => {
+        if (!user) {
+          window.netlifyIdentity.on("login", () => {
+            document.location.href = "/admin/";
+          });
         }
       });
     }
   </script>
-
 </body>
 </html>
